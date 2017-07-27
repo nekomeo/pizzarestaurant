@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "Kitchen.h"
+#import "Pizza.h"
 
 int main(int argc, const char * argv[])
 {
@@ -35,7 +35,19 @@ int main(int argc, const char * argv[])
             NSArray *commandWords = [inputString componentsSeparatedByString:@" "];
             
             // And then send some message to the kitchen...
+            //TODO Get the Size
+    
+                //Convert string to enum
+            PizzaSize *size = [Pizza sizeFromString:commandWords[0]];
+            
+            //TODO Get the toppings
+            NSArray *pizzaArray = [commandWords subarrayWithRange:NSMakeRange(1, commandWords.count - 1)];
+            
+            // tell kitchen to make pizza
+                //TODO Get kitchen
+            [restaurantKitchen makePizzaWithSize:size toppings:pizzaArray];
         }
+        
 
     }
     return 0;

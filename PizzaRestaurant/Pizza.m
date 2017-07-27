@@ -10,6 +10,16 @@
 
 @implementation Pizza
 
+- (instancetype)initWithPizzaSize:(PizzaSize)size andToppings:(NSMutableArray *)toppings
+{
+    if (self = [super init])
+    {
+        _pizzaSize = size;
+        _toppings = toppings;
+    }
+    return self;
+}
+
 - (NSString *)convertPizzaToString:(PizzaSize)pizzaSize
 {
     NSString *size = nil;
@@ -26,16 +36,28 @@
             size = @"large";
             break;
         default:
-            size = @"small";
             break;
     }
 
     return size;
 }
 
-- (void)listOfToppings:(NSArray *)toppings
-{
-    toppings = @[@"pineapple", @"pepperoni", @"cheese", @"chicken", @"peppers", @"ham"];
-}
 
+//Argument - NSString
+//Return - Enum/PizzaSize
++(PizzaSize)sizeFromString:(NSString *)userInput
+{
+    if ([userInput isEqualToString:@"large"])
+    {
+        return large;
+    }
+    else if ([userInput isEqualToString:@"medium"])
+    {
+        return medium;
+    }
+    else
+    {
+        return small;
+    }
+}
 @end

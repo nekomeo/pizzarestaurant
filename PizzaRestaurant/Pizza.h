@@ -20,7 +20,9 @@ typedef enum
 @property (nonatomic) PizzaSize pizzaSize;
 @property (nonatomic, strong) NSArray *toppings;
 
-- (void)listOfToppings:(NSArray *)toppings;
-- (NSString *)convertPizzaToString:(PizzaSize)pizzaSize;
+- (instancetype)initWithPizzaSize:(PizzaSize)size andToppings:(NSMutableArray *)toppings;
+//- (void)listOfToppings:(NSArray *)toppings;
+//- (NSString *)convertPizzaToString:(PizzaSize)pizzaSize;
++(PizzaSize)sizeFromString:(NSString *)userInput;
 
 @end
