@@ -34,18 +34,22 @@ int main(int argc, const char * argv[])
             // Take the first word of the command as the size, and the rest as the toppings
             NSArray *commandWords = [inputString componentsSeparatedByString:@" "];
             
-            // And then send some message to the kitchen...
             //TODO Get the Size
-    
-                //Convert string to enum
-            PizzaSize *size = [Pizza sizeFromString:commandWords[0]];
+            NSString *sizeString = commandWords.firstObject;
+            NSArray *pizzaArray = [commandWords subarrayWithRange:NSMakeRange(1, commandWords.count - 1)];
             
             //TODO Get the toppings
-            NSArray *pizzaArray = [commandWords subarrayWithRange:NSMakeRange(1, commandWords.count - 1)];
+//            NSArray *pizzaArray = [commandWords subarrayWithRange:NSMakeRange(1, commandWords.count - 1)];
+            
+            //Convert string to enum
+//            PizzaSize size = [Pizza sizeFromString:commandWords[0]];
+            
+            // And then send some message to the kitchen...
+            PizzaSize someSize = [Pizza sizeFromString:sizeString];
             
             // tell kitchen to make pizza
                 //TODO Get kitchen
-            [restaurantKitchen makePizzaWithSize:size toppings:pizzaArray];
+            [restaurantKitchen makePizzaWithSize:someSize toppings:pizzaArray];
         }
         
 

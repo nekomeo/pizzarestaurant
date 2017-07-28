@@ -14,7 +14,28 @@
 {
     Pizza *newPizza = [[Pizza alloc] initWithPizzaSize:size andToppings:toppings];
     
+    if ([self.delegate kitchen:self shouldMakePizzaOfSize:size andToppings:toppings] == NO)
+    {
+        return nil;
+    }
+    else
+    {
+        if ([self.delegate kitchen:self shouldMakePizzaOfSize:size andToppings:toppings])
+        {
+            PizzaSize targetSize = size;
+            if ([self.delegate kitchenShouldUpgradeOrder:self])
+            {
+                targetSize = large;
+            }
+            newPizza = [[Pizza alloc] initWithPizzaSize:size andToppings:toppings];
+            if ([self.delegate respondsToSelector:@selector(kitchenDidMakePizza:)])
+            {
+                [self.delegate kitchenDidMakePizza:newPizza];
+            }
+        }
+    }
     return newPizza;
 }
+
 
 @end
